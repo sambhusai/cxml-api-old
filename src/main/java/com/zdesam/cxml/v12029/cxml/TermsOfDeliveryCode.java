@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "TermsOfDeliveryCode")
 public class TermsOfDeliveryCode {
 
-    @XmlAttribute(name = "val", required = true)
+    @XmlAttribute(name = "value", required = true)
     @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String val;
     @XmlValue

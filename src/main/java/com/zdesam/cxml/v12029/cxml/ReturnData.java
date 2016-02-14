@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlRootElement(name = "ReturnData")
 public class ReturnData {
 
-    @XmlAttribute(name = "nameAttr")
+    @XmlAttribute(name = "name")
     @XmlJavaTypeAdapter(NormalizedStringAdapter.class)
     protected String nameAttr;
     @XmlElement(name = "ReturnValue", required = true)
