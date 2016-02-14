@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    For cXML license agreement information, please see
+    http://www.cxml.org/home/license.asp
+
+    $Id: //ariba/cxml/modules/Common.mod#6 $
+-->
+
+<!--
+    A few character entities the XML recommendation says should be defined
+    "for interoperability" with existing SGML parsers.  By default, these
+    are not included to avoid warnings (about entity redefinition) from
+    many XML parsers.
+-->
+<!ENTITY % SGML-help "IGNORE">
+<![%SGML-help;[
+<!ENTITY lt     "&#38;#60;">
+<!ENTITY gt     "&#62;">
+<!ENTITY amp    "&#38;#38;">
+<!ENTITY apos   "&#39;">
+<!ENTITY quot   "&#34;">
+]]>
+
+<!--
+    Common types used throughout the cXML definition.
+
+    The types try to follow the XML DATA definition submitted to the W3C. See
+    the following for more information,
+
+        http://msdn.microsoft.com/xml/reference/schema/datatypes.asp
+        http://www.w3c.org/TR/1998/NOTE-XML-data-0105/
+
+-->
+
+<!-- Atomic-level Types -->
+<!ENTITY % bin.base64 "CDATA">
+<!ENTITY % bin.hex "CDATA">
+<!ENTITY % boolean "(0 | 1)">    <!-- 0 is false, 1 is true -->
+<!ENTITY % char "CDATA">
+<!ENTITY % date "CDATA">
+<!ENTITY % datetime.tz "CDATA">  <!-- Time zone is required -->
+<!ENTITY % fixed.14.4 "CDATA">
+<!ENTITY % i8 "CDATA">
+<!ENTITY % int "%i8;">
+<!ENTITY % r8 "CDATA">
+<!ENTITY % number "CDATA">       <!-- No limit on number of digits, unlike
+                                      %r8; -->
+<!ENTITY % string "CDATA">
+<!ENTITY % time.tz "CDATA">      <!-- Time zone is required -->
+<!ENTITY % duration "CDATA">      <!--ISO8601 duration http://www.w3.org/TR/xmlschema-2/#duration  -->
+<!ENTITY % ui8 "CDATA">
+<!ENTITY % uint "%ui8;">         <!-- Unique to this specification -->
+<!ENTITY % uri "CDATA">
+<!ENTITY % uuid "CDATA">
+
+<!-- Higher-level Types -->
+<!--
+    NOTE: The following is a temporary *hack* to allow empty values for
+    some attributes with these types.  The nmtoken entity should resolve to
+    NMTOKEN.
+-->
+<!ENTITY % nmtoken "CDATA">      <!-- Any combination of XML name chars. -->
+<!ENTITY % isoLangCode "%nmtoken;">         <!-- ISO 639 Language Code -->
+<!ENTITY % isoCountryCode "%nmtoken;">      <!-- ISO 3166 Country Code -->
+<!ENTITY % isoStateCode "%nmtoken;">      <!-- ISO 3166-2:2013 Country Subdivision (State) Code -->
+<!ENTITY % isoCurrencyCode "%nmtoken;">     <!-- ISO 4217 Currency Code -->
+<!ENTITY % xmlLangCode "%nmtoken;"> <!-- Language code as defined by XML
+                                         recommendation: Language and
+					 country. -->
+<!ENTITY % URL "%uri;">
+<!--
+    For cXML license agreement information, please see
+    http://www.cxml.org/home/license.asp
+
+    $Id: //ariba/cxml/modules/Version.mod#4 $
+-->
+
+<!--
+     Another top-level entity used in Transport.mod.  Defined here to allow
+     easy updates to the release version of cXML without opening
+     Transport.mod.  This should also provide an easy file to search for
+     the current release version string.
+-->
+
+<!-- cxml.version
+    Current default string for the cXML@version attribute.  Corresponds to
+    the final directory of the SYSTEM identifier used in all up-to-date
+    cXML documents.
+    For easy parsing of this file, do not remove whitespace surrounding the
+    actual version string.
+-->
+<!ENTITY cxml.version "1.2.029" >
+<!ENTITY % cxml.requests "(XMLPayRequest)">
+
+<!ENTITY % cxml.responses ",(XMLPayResponse)?">
+
+<!ELEMENT Signature (#PCDATA)>
+
+<!ELEMENT InvNum (#PCDATA)>
+
+<!ELEMENT Date (#PCDATA)>
+
+<!ELEMENT Name (#PCDATA)>
+
+<!ELEMENT Street (#PCDATA)>
+
+<!ELEMENT City (#PCDATA)>
+
+<!ELEMENT State (#PCDATA)>
+
+<!ELEMENT Zip (#PCDATA)>
+
+<!ELEMENT Country (#PCDATA)>
+
+<!ELEMENT Address ((Street?, City?, State?, Zip?, Country?))>
+
+<!ELEMENT EMail (#PCDATA)>
+
+<!ELEMENT Phone (#PCDATA)>
+
+<!ELEMENT Fax (#PCDATA)>
+
+<!ELEMENT URL (#PCDATA)>
+
+<!ELEMENT BillFrom (Name?, Address?, EMail?, Phone?, Fax?, URL?)>
+
+<!ELEMENT CustomerId (#PCDATA)>
+
+<!ELEMENT CustCode (#PCDATA)>
+
+<!ELEMENT PONum (#PCDATA)>
+
+<!ELEMENT TaxExempt (#PCDATA)>
+
+<!ELEMENT BillTo (CustomerId?, Name?, Address?, EMail?, Phone?, Fax?, CustCode?, PONum?, TaxExempt?)>
+
+<!ELEMENT ShipFrom (Name?, Address, EMail?, Phone?, Fax?)>
+
+<!ELEMENT ShipTo (Name?, Address, EMail?, Phone?, Fax?)>
+
+<!ELEMENT Description (#PCDATA)>
+
+<!ELEMENT SKU (#PCDATA)>
+
+<!ELEMENT UPC (#PCDATA)>
+
+<!ELEMENT Quantity (#PCDATA)>
+
+<!ELEMENT UnitOfMeasurement (#PCDATA)>
+
+<!ELEMENT UnitPrice (#PCDATA)>
+<!ATTLIST UnitPrice Currency CDATA #IMPLIED>
+
+<!ELEMENT ExtAmt (#PCDATA)>
+<!ATTLIST ExtAmt Currency CDATA #IMPLIED>
+
+<!ELEMENT DiscountAmt (#PCDATA)>
+<!ATTLIST DiscountAmt Currency CDATA #IMPLIED>
+
+<!ELEMENT TaxAmt (#PCDATA)>
+<!ATTLIST TaxAmt Currency CDATA #IMPLIED>
+
+<!ELEMENT TotalAmt (#PCDATA)>
+<!ATTLIST TotalAmt Currency CDATA #IMPLIED>
+
+<!ELEMENT ExtData (#PCDATA)>
+<!ATTLIST ExtData Name CDATA #IMPLIED>
+<!ATTLIST ExtData Value CDATA #IMPLIED>
+
+<!ELEMENT CostCenterNumber (#PCDATA)>
+
+<!ELEMENT TrackingNumber (#PCDATA)>
+
+<!ELEMENT FreightAmt (#PCDATA)>
+<!ATTLIST FreightAmt Currency CDATA #IMPLIED>
+
+<!ELEMENT ShipmentNumber (#PCDATA)>
+
+<!ELEMENT Time (#PCDATA)>
+
+<!ELEMENT PickUp (Time?, Date?, Address?)>
+
+<!ELEMENT Delivery (Time?, Date?)> 
+
+<!ELEMENT Item ((SKU?, UPC?, Description?, Quantity?, UnitOfMeasurement?, UnitPrice?, ExtAmt?, DiscountAmt?, TaxAmt?, TotalAmt?, CostCenterNumber?, TrackingNumber?, FreightAmt?, ShipmentNumber?, PickUp?, Delivery?, ExtData*))>
+<!ATTLIST Item Number CDATA #REQUIRED>
+
+<!ELEMENT Items (Item*)>
+
+<!ELEMENT ShippingAmt (#PCDATA)>
+<!ATTLIST ShippingAmt Currency CDATA #IMPLIED>
+
+<!ELEMENT DutyAmt (#PCDATA)>
+<!ATTLIST DutyAmt Currency CDATA #IMPLIED>
+
+<!ELEMENT NationalTaxIncl (#PCDATA)>
+
+<!ELEMENT Comment (#PCDATA)>
+
+<!ELEMENT Invoice ((InvNum?, Date?, BillFrom?, BillTo?, ShipFrom?, ShipTo?, Description*, Items?, DiscountAmt?, ShippingAmt?, DutyAmt?, TaxAmt?, NationalTaxIncl?, TotalAmt, Comment?, ExtData*))>
+
+<!ELEMENT AcctType (#PCDATA)>
+
+<!ELEMENT AcctNum (#PCDATA)>
+
+<!ELEMENT ABA (#PCDATA)>
+
+<!ELEMENT Prenote (#PCDATA)>
+
+<!ELEMENT ACH ((AcctType, AcctNum, ABA, Prenote?, ExtData*))>
+
+<!ELEMENT CardType (#PCDATA)>
+
+<!ELEMENT CardNum (#PCDATA)>
+
+<!ELEMENT ExpDate (#PCDATA)>
+
+<!ELEMENT CVNum (#PCDATA)>
+
+<!ELEMENT MagData (#PCDATA)>
+
+<!ELEMENT NameOnCard (#PCDATA)>
+
+<!ELEMENT Card ((CardType?, CardNum, ExpDate, CVNum?, MagData?, NameOnCard?, ExtData*))>
+
+<!ELEMENT CheckType (#PCDATA)>
+
+<!ELEMENT AllianceNum (#PCDATA)>
+
+<!ELEMENT CheckNum (#PCDATA)>
+
+<!ELEMENT MICR (#PCDATA)>
+
+<!ELEMENT DL (#PCDATA)>
+
+<!ELEMENT SS (#PCDATA)>
+
+<!ELEMENT DOB (#PCDATA)>
+
+<!ELEMENT Check ((CheckType, AllianceNum?, CheckNum, MICR, DL?, SS?, DOB?, ExtData*, Address?))>
+
+<!ELEMENT Tender ((ACH| Card| Check))>
+
+<!ELEMENT PayData ((Invoice, Tender))>
+
+<!ELEMENT PKCS7Signature (#PCDATA)>
+
+<!ELEMENT PayDataAuth ((PKCS7Signature| Signature))>
+
+<!ELEMENT Vendor (#PCDATA)>
+
+<!ELEMENT Partner (#PCDATA)>
+
+<!ELEMENT Authorization ((PayData, PayDataAuth?, ExtData*))>
+
+<!ELEMENT PNRef (#PCDATA)>
+
+<!ELEMENT Capture ((PNRef, Invoice?, ExtData*))>
+
+<!ELEMENT Sale ((PayData, PayDataAuth?, ExtData*))>
+
+<!ELEMENT Credit (((PNRef| Tender), Invoice?, ExtData*))>
+
+<!ELEMENT Void ((PNRef, ExtData*))>
+
+<!ELEMENT AuthCode (#PCDATA)>
+
+<!ELEMENT ForceCapture ((PayData, PayDataAuth?, AuthCode, ExtData*))>
+
+<!ELEMENT RepeatSale ((PNRef, Invoice?, ExtData*))>
+
+<!ELEMENT GetStatus ((PNRef, ExtData*))>
+
+<!ELEMENT Transaction (((Authorization| Capture| Sale| Credit| Void| ForceCapture| RepeatSale| GetStatus)))>
+<!ATTLIST Transaction Id CDATA #IMPLIED>
+<!ATTLIST Transaction CustRef CDATA #IMPLIED>
+
+<!ELEMENT Transactions (Transaction+)>
+
+<!ELEMENT RequestData ((Vendor, Partner, Transactions))>
+
+<!ELEMENT User (#PCDATA)>
+
+<!ELEMENT UserDomain (#PCDATA)>
+
+<!ELEMENT Password (#PCDATA)>
+
+<!ELEMENT UserPass ((User, UserDomain?, Password))>
+
+<!ELEMENT RequestAuth ((UserPass| Signature))>
+
+<!ELEMENT XMLPayRequest ((RequestData, RequestAuth))>
+<!ATTLIST XMLPayRequest version CDATA #IMPLIED>
+<!ATTLIST XMLPayRequest Timeout CDATA #IMPLIED>
+<!ATTLIST XMLPayRequest UniqueTransactionIdentifier CDATA #IMPLIED>
+
+<!ELEMENT Result (#PCDATA)>
+
+<!ELEMENT StreetMatch (#PCDATA)>
+
+<!ELEMENT ZipMatch (#PCDATA)>
+
+<!ELEMENT AVSResult ((StreetMatch, ZipMatch))>
+
+<!ELEMENT CVResult (#PCDATA)>
+
+<!ELEMENT Message (#PCDATA)>
+
+<!ELEMENT HostCode (#PCDATA)>
+
+<!ELEMENT HostURL (#PCDATA)>
+
+<!ELEMENT OrigResult (#PCDATA)>
+
+<!ELEMENT TrStatus (#PCDATA)>
+
+<!ELEMENT ReceiptURL (#PCDATA)>
+
+<!ELEMENT TransactionResult ((Result, AVSResult?, CVResult?, Message?, PNRef?, AuthCode?, HostCode?, HostURL?, OrigResult?, TrStatus?, ReceiptURL?, ExtData*))>
+<!ATTLIST TransactionResult Id CDATA #IMPLIED>
+
+<!ELEMENT TransactionResults (TransactionResult+)>
+
+<!ELEMENT ResponseData ((Vendor, Partner, TransactionResults))>
+
+<!ELEMENT ReceiptData ((Vendor, Partner, Transaction, TransactionResult))>
+
+<!ELEMENT XMLPayReceipt ((ReceiptData, Signature?))>
+
+<!ELEMENT TransactionReceipts (XMLPayReceipt+)>
+
+<!ELEMENT XMLPayResponse ((ResponseData, Signature?, TransactionReceipts?))>
+<!ATTLIST XMLPayResponse version CDATA #IMPLIED>
+<!ATTLIST XMLPayResponse UniqueTransactionIdentifier CDATA #IMPLIED>
+
+<!ELEMENT cXML (( Header, (Message | Request)) | Response)>
+<!ATTLIST cXML
+    version    %string;       "&cxml.version;"
+    payloadID  %string;       #REQUIRED
+    timestamp  %datetime.tz;  #REQUIRED
+    xml:lang   %xmlLangCode;  #IMPLIED
+>
+
+<!ELEMENT Header (From, To, Sender)>
+
+<!ELEMENT From (Credential+)>
+<!ELEMENT To (Credential+)>
+<!ELEMENT Sender (Credential+, UserAgent)>
+
+<!ELEMENT UserAgent (#PCDATA)>
+
+<!ELEMENT DigitalSignature ANY>
+<!ATTLIST DigitalSignature
+    type      %string;  "PK7 self-contained"
+    encoding  %string;  "Base64"
+>
+
+<!ELEMENT SharedSecret ANY>
+
+<!ELEMENT Identity ANY>
+<!ATTLIST Identity
+    lastChangedTimestamp  %datetime.tz;  #IMPLIED
+>
+
+<!ENTITY % cxml.authentication  "SharedSecret |
+                                 DigitalSignature"
+>
+<!ELEMENT Credential (Identity, (%cxml.authentication;)?)>
+<!ATTLIST Credential
+    domain  %string;      #REQUIRED
+    type    (marketplace) #IMPLIED
+>
+
+<!ELEMENT Status (#PCDATA)>
+<!ATTLIST Status
+    code     %uint;        #REQUIRED
+    text     %string;      #REQUIRED
+    xml:lang %xmlLangCode; #IMPLIED
+>
+
+<!ELEMENT Request (%cxml.requests;)>
+<!ATTLIST Request
+    deploymentMode  (production | test)  "production"
+>
+
+<!ELEMENT Response (Status %cxml.responses;)>
