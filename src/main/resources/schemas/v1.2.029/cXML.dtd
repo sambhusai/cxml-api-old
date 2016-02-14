@@ -561,7 +561,7 @@ a certain pair of buyer and supplier),
 -->
 <!ELEMENT ReturnData (ReturnValue, Name)>
 <!ATTLIST ReturnData
-    name  %string;  #IMPLIED
+    nameAttr  %string;  #IMPLIED
 >
 
 <!ELEMENT ReturnValue (#PCDATA)>
@@ -3332,7 +3332,7 @@ xml:lang %xmlLangCode; #REQUIRED>
 -->
 <!ELEMENT TransportTerms (#PCDATA)>
 <!ATTLIST TransportTerms
-    value %string; #REQUIRED
+    val %string; #REQUIRED
 >
 
 <!--
@@ -3364,7 +3364,7 @@ xml:lang %xmlLangCode; #REQUIRED>
 -->
 <!ELEMENT ShippingPaymentMethod (#PCDATA)>
 <!ATTLIST ShippingPaymentMethod
-    value %string; #REQUIRED
+    val %string; #REQUIRED
 >
 
 <!--
@@ -3386,7 +3386,7 @@ xml:lang %xmlLangCode; #REQUIRED>
 -->
 <!ELEMENT TermsOfDeliveryCode (#PCDATA)>
 <!ATTLIST TermsOfDeliveryCode
-    value %string; #REQUIRED
+    val %string; #REQUIRED
 >
  
 <!--
